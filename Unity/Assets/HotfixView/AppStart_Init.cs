@@ -20,9 +20,15 @@ namespace ET
             
             Game.Scene.AddComponent<NetThreadComponent>();
 
+            Game.Scene.AddComponent<ZoneSceneManagerComponent>();
+            
+            Game.Scene.AddComponent<GlobalComponent>();
+
+            Game.Scene.AddComponent<AIDispatcherComponent>();
+
             ResourcesComponent.Instance.LoadBundle("unit.unity3d");
 
-            Scene zoneScene = await SceneFactory.CreateZoneScene(1, 1, "Game");
+            Scene zoneScene = await SceneFactory.CreateZoneScene(1, "Process");
 
             await Game.EventSystem.Publish(new EventType.AppStartInitFinish() { ZoneScene = zoneScene });
         }
